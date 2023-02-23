@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alpine demo 1</title>
+    <script src="alpine_full.js" defer></script>
+    <script>
+
+// {
+//     "type": "change_data",
+//     "data_path": "label",
+//     "data_value": "novi label"
+// }
+        function onClick(e) {
+            console.log($data);
+            const t = this;
+             t.label = "222"
+            fetch("/WebooReact/weboo/misc/demo/command.json")
+                .then(res => res.json())
+                .then(json => {
+                    console.log("Dobio command ", json);
+                    if(json.type === 'change_data') {
+                        t[json.data_path] = json.data_value;
+                    }
+
+                });
+            let $button = document.getElementById(e.id);
+            // console.log("data", Alpine.data($button));
+
+        }
+
+    </script>
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+<div x-cloak x-data="{}">
+    <button x-data='{"id":"gYdPqrCF","classes":" btn btn-primary","label":"klikni me"}' @click="onClick($el)"
+            x-text='label' :class='classes' :id='id'
+            type='button'>Neki label
+</div>
+</button>
+</body>
+</html>

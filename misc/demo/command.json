@@ -1,0 +1,5 @@
+{
+    "type": "change_data",
+    "data_path": "label",
+    "data_value": "novi label"
+}
